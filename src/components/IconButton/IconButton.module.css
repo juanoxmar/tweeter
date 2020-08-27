@@ -1,0 +1,50 @@
+.btn {
+  display: flex;
+  width: 255px;
+  margin: 7px 0;
+  text-decoration: none;
+  color: black;
+}
+
+.btn div {
+  padding: 10px 12.875px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  border-radius: 52px;
+}
+
+.btn:hover div {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.btn:hover img,
+.btn:hover span {
+  filter: invert(58%) sepia(49%) saturate(3979%) hue-rotate(175deg)
+    brightness(97%) contrast(96%);
+}
+
+.btn span {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  font-size: 19px;
+  margin-left: 20px;
+  margin-right: 15px;
+  font-weight: 700;
+}
+
+.btn img {
+  height: 26.25px;
+  width: 26.25px;
+}
+
+@media (max-width: 1280px) {
+  .btn {
+    width: 52px;
+  }
+  .btn span {
+    display: none;
+  }
+}

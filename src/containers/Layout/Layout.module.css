@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 500px) {
+  .container {
+    flex-direction: column;
+  }
+  .container nav {
+    border-right: none;
+    border-top: 1px solid lightgray;
+    display: flex;
+    order: 99;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
