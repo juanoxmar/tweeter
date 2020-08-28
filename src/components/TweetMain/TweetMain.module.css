@@ -1,0 +1,56 @@
+.container {
+  width: 598px;
+  height: 118px;
+  padding: 5px 0;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 0 15px;
+}
+
+.container img {
+  width: 49px;
+  padding-top: 5px;
+  margin-right: 10px;
+}
+
+.container textarea {
+  overflow: visible;
+  resize: none;
+  border: none;
+  outline: none;
+  font-weight: 400;
+  font-size: 19px;
+}
+
+.btnRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+}
+
+.btn {
+  border-radius: 37px;
+  height: 37px;
+  width: 74px;
+  border: none;
+  outline: none;
+  background-color: rgb(29, 161, 242);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+}
+
+@media (max-width: 500px) {
+  .container {
+    display: none;
+  }
+}

@@ -1,0 +1,34 @@
+.avatar {
+  width: 255px;
+  margin: 10px 0;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  border-radius: 39px;
+}
+
+.avatar:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.avatar img {
+  height: 39px;
+  margin: 0 10px;
+}
+
+.handles {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1280px) {
+  .handles {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .avatar {
+    display: none;
+  }
+}

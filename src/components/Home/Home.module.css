@@ -1,0 +1,36 @@
+.bar {
+  height: 53px;
+  border-bottom: 1px solid lightgray;
+  font-size: 19px;
+  font-weight: 700;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.bar span {
+  margin: 0 15px;
+}
+
+.avatar {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .bar {
+    width: 100%;
+    order: 1;
+    position: fixed;
+    top: 0;
+    padding: 0 15px;
+  }
+
+  .avatar {
+    display: inline-flex;
+    width: 45px;
+  }
+
+  .avatar img {
+    width: 30px;
+  }
+}

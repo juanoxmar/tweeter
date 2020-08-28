@@ -1,0 +1,15 @@
+.container {
+  width: 392px;
+}
+
+@media (max-width: 1092px) {
+  .container {
+    width: 322px;
+  }
+}
+
+@media (max-width: 1002px) {
+  .container {
+    display: none;
+  }
+}

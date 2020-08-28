@@ -1,4 +1,38 @@
-.navBar {
+.container {
+  height: 100%;
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-right: 1px solid lightgray;
+}
+
+.navBar {
   padding: 8px;
+}
+
+@media (max-width: 1280px) {
+  .container {
+    width: 88px;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    position: fixed;
+    box-sizing: border-box;
+    bottom: 8px;
+    width: 100%;
+    order: 99;
+    height: 66px;
+    z-index: 10;
+  }
+
+  .container nav {
+    border-right: none;
+    border-top: 1px solid lightgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }

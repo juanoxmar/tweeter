@@ -1,0 +1,11 @@
+.spacer {
+  width: 598px;
+  height: 10px;
+  background-color: rgb(230, 236, 240);
+}
+
+@media (max-width: 500px) {
+  .spacer {
+    display: none;
+  }
+}
