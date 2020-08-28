@@ -27,20 +27,19 @@ function TweetMain() {
         <div>
           <img src={avatar} alt='' />
         </div>
-        <div>
+        <div className={classes.content}>
           <form onSubmit={handleSubmit(onSubmit)} action=''>
             <div>
               <textarea
                 ref={register}
                 name='tweet'
                 id='tweet'
-                cols={44}
                 rows={3}
                 placeholder='Whats happening?'
               />
             </div>
             <div className={classes.btnRow}>
-              <div>Icon Icon Icon</div>
+              <div>- - -</div>
               <button
                 type='submit'
                 disabled={!formState.isValid}

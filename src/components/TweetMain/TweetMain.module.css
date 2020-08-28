@@ -1,13 +1,27 @@
 .container {
   width: 598px;
-  height: 118px;
+  height: 130px;
   padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.container form {
+  width: 100%;
 }
 
 .innerContainer {
   display: flex;
   flex-direction: row;
   margin: 0 15px;
+  width: auto;
+  height: 100%;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
 }
 
 .container img {
@@ -31,6 +45,8 @@
   justify-content: space-between;
   align-items: center;
   height: 45px;
+  border-top: 1px solid lightgray;
+  padding-top: 8px;
 }
 
 .btn {
@@ -43,6 +59,11 @@
   color: white;
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(26, 145, 218);
 }
 
 .btn:disabled {
@@ -51,6 +72,21 @@
 
 @media (max-width: 500px) {
   .container {
-    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container textarea {
+    font-size: 16px;
+  }
+  .btnRow {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }

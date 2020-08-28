@@ -1,0 +1,22 @@
+.logo {
+  width: 49px;
+  height: 49px;
+  border-radius: 49px;
+  padding: 2px 0;
+}
+
+.inner {
+  width: 49px;
+  height: 49px;
+  border-radius: 49px;
+}
+
+.inner:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+@media (max-width: 500px) {
+  .logo {
+    display: none;
+  }
+}

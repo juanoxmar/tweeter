@@ -22,6 +22,9 @@
 }
 
 @media (max-width: 1280px) {
+  .avatar {
+    width: 59px;
+  }
   .handles {
     display: none;
   }

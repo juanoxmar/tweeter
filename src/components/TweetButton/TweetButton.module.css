@@ -1,0 +1,53 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(29, 161, 242);
+  width: 167.5px;
+  height: 47px;
+  padding: 0 30px;
+  color: white;
+  border-radius: 47px;
+  line-height: 47px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.btn img {
+  display: none;
+  width: 25px;
+}
+
+.feather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn:hover {
+  background-color: rgb(26, 145, 218);
+}
+
+@media (max-width: 1280px) {
+  .btn {
+    margin-left: 2.5px;
+    width: 47px;
+    padding: 0;
+  }
+  .btn img {
+    display: inline-block;
+  }
+  .btn span {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .btn {
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    z-index: 99;
+  }
+}

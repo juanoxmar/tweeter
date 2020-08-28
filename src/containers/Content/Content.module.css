@@ -1,3 +1,13 @@
 .container {
   border-right: 1px solid lightgray;
 }
+
+.main {
+  margin: 8px 0;
+}
+
+@media (max-width: 500px) {
+  .main {
+    display: none;
+  }
+}

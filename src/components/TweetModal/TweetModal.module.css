@@ -1,0 +1,51 @@
+.modal {
+  display: flex;
+  width: 600px;
+  height: 200px;
+  flex-direction: column;
+  position: fixed;
+  background-color: white;
+  border-radius: 15px;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: auto;
+  z-index: 200;
+  box-sizing: border-box;
+}
+
+.close {
+  align-self: flex-start;
+  user-select: none;
+  margin: 8px;
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  margin-left: 4.25;
+  text-align: center;
+  line-height: 32px;
+  font-weight: 500;
+  color: rgba(29, 161, 242, 1);
+}
+
+.close:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.tweet {
+  border-top: 1px solid lightgray;
+  padding: 8px 0;
+}
+
+@media (max-width: 500px) {
+  .modal {
+    width: 95%;
+  }
+
+  .tweet {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 0;
+  }
+}

@@ -9,7 +9,9 @@ function Content() {
   return (
     <main className={classes.container}>
       <Home />
-      <TweetMain />
+      <div className={classes.main}>
+        <TweetMain />
+      </div>
       <Spacer />
     </main>
   );
