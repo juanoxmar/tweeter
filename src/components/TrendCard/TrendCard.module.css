@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 348px;
+  border-top: 1px solid rgb(230, 236, 240);
+  padding: 10px;
+}
+
+.container a {
+  text-decoration: none;
+  color: rgb(29, 161, 242);
+}
+
+@media (max-width: 1092px) {
+  .container {
+    width: 288px;
+  }
+}
