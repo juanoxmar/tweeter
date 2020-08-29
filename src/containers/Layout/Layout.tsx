@@ -8,9 +8,15 @@ import Trend from '../Trend/Trend';
 function Layout() {
   return (
     <div className={classes.container}>
-      <NavBar />
-      <Content />
-      <Trend />
+      <div className={classes.nav}>
+        <NavBar />
+      </div>
+      <div>
+        <Content />
+      </div>
+      <div className={classes.trend}>
+        <Trend />
+      </div>
     </div>
   );
 }

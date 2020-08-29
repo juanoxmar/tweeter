@@ -15,7 +15,7 @@
   background-color: rgba(29, 161, 242, 0.1);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 690px) {
   .logo {
     display: none;
   }

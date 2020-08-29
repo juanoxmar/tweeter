@@ -5,6 +5,9 @@
   width: 392px;
   margin-top: 20px;
   box-sizing: border-box;
+  position: fixed;
+  left: auto;
+  right: auto;
 }
 
 .trends {
@@ -26,11 +29,5 @@
 @media (max-width: 1092px) {
   .container {
     width: 322px;
-  }
-}
-
-@media (max-width: 1002px) {
-  .container {
-    display: none;
   }
 }

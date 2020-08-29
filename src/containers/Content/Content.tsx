@@ -4,6 +4,7 @@ import classes from './Content.module.css';
 import Home from '../../components/Home/Home';
 import TweetMain from '../../components/TweetMain/TweetMain';
 import Spacer from '../../components/Spacer/Spacer';
+import TweetCard from '../../components/TweetCard/TweetCard';
 
 function Content() {
   return (
@@ -13,6 +14,20 @@ function Content() {
         <TweetMain />
       </div>
       <Spacer />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
+      <TweetCard />
     </main>
   );
 }

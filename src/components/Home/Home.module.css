@@ -1,11 +1,12 @@
 .bar {
   height: 53px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid rgb(230, 236, 240);
   font-size: 19px;
   font-weight: 700;
   display: flex;
   justify-content: left;
   align-items: center;
+  background-color: white;
 }
 
 .bar span {
@@ -16,7 +17,7 @@
   display: none;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 690px) {
   .bar {
     width: 100%;
     order: 1;

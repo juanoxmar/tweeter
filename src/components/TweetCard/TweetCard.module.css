@@ -1,0 +1,23 @@
+.container {
+  padding: 0px 15px;
+  border-bottom: 1px solid rgb(230, 236, 240);
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0px;
+}
+
+.avatar {
+  width: 49px;
+  margin-right: 10px;
+}
+
+.icons {
+  height: 19px;
+  margin-top: 10px;
+}

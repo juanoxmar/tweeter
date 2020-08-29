@@ -43,7 +43,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 690px) {
   .btn {
     position: fixed;
     bottom: 80px;
