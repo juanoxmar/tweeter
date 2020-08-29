@@ -37,6 +37,8 @@
   outline: none;
   font-weight: 400;
   font-size: 19px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .btnRow {
