@@ -4,16 +4,19 @@ import TextField from '@material-ui/core/TextField';
 import { yupResolver } from '@hookform/resolvers';
 
 import Logo from '../../assets/images/TwitterLogo.png';
-import classes from './Login.module.css';
+import classes from './Signup.module.css';
 import schema from './validation';
 
 type FormInputs = {
+  name: string;
+  email: string;
   userName: string;
   password: string;
+  passwordConfirm: string;
 };
 
 function Login() {
-  const { register, handleSubmit, formState } = useForm<FormInputs>({
+  const { register, handleSubmit, formState, errors } = useForm<FormInputs>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
@@ -28,14 +31,37 @@ function Login() {
         <div>
           <img src={Logo} alt='Tweeter' />
         </div>
-        <h2>Log in to Tweeter</h2>
+        <h2>Create your account</h2>
         <div className={classes.formBlock}>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <TextField
+              variant='outlined'
+              name='name'
+              label='Name'
+              inputRef={register}
+              error={!!errors.name}
+              helperText={errors.name?.message}
+              style={{ margin: '8px' }}
+              fullWidth
+            />
+            <TextField
+              variant='outlined'
+              name='email'
+              label='Email'
+              type='email'
+              inputRef={register}
+              error={!!errors.email}
+              helperText={errors.email?.message}
+              style={{ margin: '8px' }}
+              fullWidth
+            />
             <TextField
               variant='outlined'
               name='userName'
               label='Username'
               inputRef={register}
+              error={!!errors.userName}
+              helperText={errors.userName?.message}
               style={{ margin: '8px' }}
               fullWidth
             />
@@ -45,6 +71,19 @@ function Login() {
               label='Password'
               type='password'
               inputRef={register}
+              error={!!errors.password}
+              helperText={errors.password?.message}
+              style={{ margin: '8px' }}
+              fullWidth
+            />
+            <TextField
+              variant='outlined'
+              name='passwordConfirm'
+              label='Confirm Password'
+              type='password'
+              inputRef={register}
+              error={!!errors.passwordConfirm}
+              helperText={errors.passwordConfirm?.message}
               style={{ margin: '8px' }}
               fullWidth
             />
@@ -53,11 +92,10 @@ function Login() {
               disabled={!formState.isValid}
               className={classes.btn}
             >
-              Log in
+              Signup
             </button>
           </form>
         </div>
-        <div>Forgot Password? &#183; Sign up for Tweeter</div>
       </div>
     </div>
   );
