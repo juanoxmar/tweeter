@@ -6,6 +6,8 @@ import { yupResolver } from '@hookform/resolvers';
 import Logo from '../../assets/images/TwitterLogo.png';
 import classes from './Signup.module.css';
 import schema from './validation';
+import { useDispatch } from 'react-redux';
+import { authenticate } from '../../store/auth/authSlice';
 
 type FormInputs = {
   name: string;
@@ -16,12 +18,21 @@ type FormInputs = {
 };
 
 function Login() {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, formState, errors } = useForm<FormInputs>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
 
   const onSubmit = (data: FormInputs) => {
+    dispatch(
+      authenticate({
+        email: data.email,
+        password: data.password,
+        method: true,
+      })
+    );
     console.log(data);
   };
 

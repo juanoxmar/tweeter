@@ -11,12 +11,14 @@
   position: relative;
   box-sizing: border-box;
   width: 274px;
+  z-index: 1;
 }
 
 .trend {
   position: relative;
   box-sizing: border-box;
   width: 392px;
+  z-index: 0;
 }
 
 @media (max-width: 1280px) {

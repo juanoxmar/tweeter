@@ -5,13 +5,17 @@ import './index.css';
 import App from './App';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './assets/theme/theme';
+import { Provider } from 'react-redux';
 
 import * as serviceWorker from './serviceWorker';
+import store from './store/store';
 
 ReactDOM.render(
   <Router>
     <ThemeProvider theme={theme}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ThemeProvider>
   </Router>,
   document.getElementById('root')

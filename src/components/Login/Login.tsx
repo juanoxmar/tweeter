@@ -2,23 +2,40 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
 import { yupResolver } from '@hookform/resolvers';
+import { useDispatch } from 'react-redux';
 
 import Logo from '../../assets/images/TwitterLogo.png';
 import classes from './Login.module.css';
 import schema from './validation';
+import { authenticate } from '../../store/auth/authSlice';
 
 type FormInputs = {
   userName: string;
   password: string;
 };
 
+export type AuthType = {
+  email: string;
+  password: string;
+  method: boolean;
+};
+
 function Login() {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, formState } = useForm<FormInputs>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
 
   const onSubmit = (data: FormInputs) => {
+    dispatch(
+      authenticate({
+        email: data.userName,
+        password: data.password,
+        method: false,
+      })
+    );
     console.log(data);
   };
 
