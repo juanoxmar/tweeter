@@ -42,7 +42,6 @@ function Trend() {
   let trending = null;
 
   if (trend) {
-    console.log(trend);
     trending = trend.map((tweet, index) => {
       return (
         <TrendCard

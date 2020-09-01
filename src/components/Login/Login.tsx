@@ -17,12 +17,6 @@ type FormInputs = {
   password: string;
 };
 
-export type AuthType = {
-  email: string;
-  password: string;
-  method: boolean;
-};
-
 function Login() {
   const dispatch = useAppDispatch();
   const { idToken } = useSelector((state: RootState) => state.auth);
@@ -45,7 +39,6 @@ function Login() {
         method: false,
       })
     );
-    console.log(data);
   };
 
   return (

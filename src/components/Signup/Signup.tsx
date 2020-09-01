@@ -40,9 +40,10 @@ function Login() {
         email: data.email,
         password: data.password,
         method: true,
+        name: data.name,
+        userName: data.userName,
       })
     );
-    console.log(data);
   };
 
   return (
