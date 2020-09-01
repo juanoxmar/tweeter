@@ -10,8 +10,11 @@ import user from '../../assets/svg/user.svg';
 import IconButton from '../../components/IconButton/IconButton';
 import NavAvatar from '../../components/NavAvatar/NavAvatar';
 import TweetModal from '../../components/TweetModal/TweetModal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/reducer/reducer';
 
 function NavBar() {
+  const { name, userName } = useSelector((state: RootState) => state.auth);
   return (
     <div className={classes.container}>
       <nav className={classes.navBar}>
@@ -23,7 +26,7 @@ function NavBar() {
         <IconButton icon={user}>Profile</IconButton>
         <TweetModal />
       </nav>
-      <NavAvatar />
+      <NavAvatar name={name} userName={userName} />
     </div>
   );
 }

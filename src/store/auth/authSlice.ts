@@ -60,25 +60,34 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
         password: password,
         returnSecureToken: true,
       });
+      const { idToken, localId } = response.data;
       dispatch(
         authSuccess({
           name: name!,
           userName: userName!,
-          idToken: response.data.idToken,
-          localId: response.data.localId,
+          idToken: idToken,
+          localId: localId,
         })
       );
       if (response.status === 200) {
         const userUrl =
           'https://firestore.googleapis.com/v1/projects/tweeter-ab37d/databases/(default)/documents/users';
-        await axios.post(userUrl, {
-          fields: {
-            name: { stringValue: name },
-            email: { stringValue: email },
-            userName: { stringValue: userName },
-            localId: { stringValue: response.data.localId },
+        await axios.post(
+          userUrl,
+          {
+            fields: {
+              name: { stringValue: name },
+              email: { stringValue: email },
+              userName: { stringValue: userName },
+              localId: { stringValue: response.data.localId },
+            },
           },
-        });
+          {
+            headers: {
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
+        );
       }
       console.log(response);
     } else {

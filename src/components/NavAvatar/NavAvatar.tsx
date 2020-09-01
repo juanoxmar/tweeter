@@ -3,15 +3,21 @@ import React from 'react';
 import avatar from '../../assets/svg/avatar.svg';
 import classes from './NavAvatar.module.css';
 
-function NavAvatar() {
+type Props = {
+  name: string;
+  userName: string;
+};
+
+function NavAvatar(props: Props) {
+  const { name, userName } = props;
   return (
     <div className={classes.avatar}>
       <img src={avatar} alt="" />
       <div className={classes.handles}>
         <span>
-          <strong>Name</strong>
+          <strong>{name}</strong>
         </span>
-        <span>@Handle</span>
+        <span>@{userName}</span>
       </div>
     </div>
   );
