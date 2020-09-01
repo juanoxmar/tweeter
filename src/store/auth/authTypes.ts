@@ -1,5 +1,3 @@
-import { string, boolean } from 'yup';
-
 export type AuthSuccessAction = {
   idToken: string;
   localId: string;

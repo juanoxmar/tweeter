@@ -4,3 +4,8 @@
 
   margin: 0;
 }
+
+:root {
+  --primary: rgb(29, 161, 242);
+  --secondary: rgb(26, 145, 218);
+}

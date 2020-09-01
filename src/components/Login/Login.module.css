@@ -16,6 +16,15 @@
   margin: 10px;
 }
 
+.container a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.container a:hover {
+  color: var(--secondary);
+}
+
 .innerContainer {
   display: flex;
   flex-direction: column;
@@ -44,7 +53,7 @@
   border: none;
   color: white;
   outline: none;
-  background-color: rgb(29, 161, 242);
+  background-color: var(--primary);
   cursor: pointer;
   margin: 12px;
   font-size: 16px;
@@ -52,11 +61,12 @@
 }
 
 .btn:disabled {
+  cursor: not-allowed;
   opacity: 0.5;
 }
 
 .btn:hover:enabled {
-  background-color: rgb(26, 145, 218);
+  background-color: var(--secondary);
 }
 
 @media (max-width: 580px) {

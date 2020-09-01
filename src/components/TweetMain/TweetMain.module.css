@@ -57,7 +57,7 @@
   width: 74px;
   border: none;
   outline: none;
-  background-color: rgb(29, 161, 242);
+  background-color: var(--primary);
   color: white;
   font-size: 14px;
   font-weight: 700;
@@ -65,7 +65,7 @@
 }
 
 .btn:hover {
-  background-color: rgb(26, 145, 218);
+  background-color: var(--secondary);
 }
 
 .btn:disabled {

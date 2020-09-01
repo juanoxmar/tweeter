@@ -9,7 +9,7 @@
 
 .container a {
   text-decoration: none;
-  color: rgb(29, 161, 242);
+  color: var(--primary);
 }
 
 @media (max-width: 1092px) {

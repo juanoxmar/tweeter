@@ -6,7 +6,7 @@ import classes from './NavAvatar.module.css';
 function NavAvatar() {
   return (
     <div className={classes.avatar}>
-      <img src={avatar} alt='' />
+      <img src={avatar} alt="" />
       <div className={classes.handles}>
         <span>
           <strong>Name</strong>
