@@ -97,20 +97,25 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
         password: password,
         returnSecureToken: true,
       });
+      const { idToken, localId } = response.data;
       const users = await axios.get<UsersResponse>(
-        'https://firestore.googleapis.com/v1/projects/tweeter-ab37d/databases/(default)/documents/users'
+        'https://firestore.googleapis.com/v1/projects/tweeter-ab37d/databases/(default)/documents/users',
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        }
       );
       const findUser = users.data.documents.filter(
-        (profile) =>
-          profile.fields.localId.stringValue === response.data.localId
+        (profile) => profile.fields.localId.stringValue === localId
       )[0];
       console.log(findUser);
       dispatch(
         authSuccess({
           name: findUser.fields.name.stringValue,
           userName: findUser.fields.userName.stringValue,
-          idToken: response.data.idToken,
-          localId: response.data.localId,
+          idToken: idToken,
+          localId: localId,
         })
       );
     }
