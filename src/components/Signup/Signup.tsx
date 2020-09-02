@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
 import { yupResolver } from '@hookform/resolvers';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 
 import Logo from '../../assets/images/TwitterLogo.png';
 import classes from './Signup.module.css';
@@ -119,7 +119,7 @@ function Login() {
           </form>
         </div>
         <div>
-          <a href="/tweeter/login">Login</a> to Tweeter
+          <NavLink to="/tweeter/login">Login</NavLink> to Tweeter
         </div>
       </div>
     </div>
