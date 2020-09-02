@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/tweeter/static/css/main.138362c9.chunk.css",
+    "main.css": "/tweeter/static/css/main.f5631370.chunk.css",
     "main.js": "/tweeter/static/js/main.f340b749.chunk.js",
     "main.js.map": "/tweeter/static/js/main.f340b749.chunk.js.map",
     "runtime-main.js": "/tweeter/static/js/runtime-main.6a247108.js",
@@ -8,9 +8,9 @@
     "static/js/2.b07c255e.chunk.js": "/tweeter/static/js/2.b07c255e.chunk.js",
     "static/js/2.b07c255e.chunk.js.map": "/tweeter/static/js/2.b07c255e.chunk.js.map",
     "index.html": "/tweeter/index.html",
-    "precache-manifest.d255528c23a6d452b61a9cac65e8d14a.js": "/tweeter/precache-manifest.d255528c23a6d452b61a9cac65e8d14a.js",
+    "precache-manifest.e6b1eb7e6d338077e0978af700a29166.js": "/tweeter/precache-manifest.e6b1eb7e6d338077e0978af700a29166.js",
     "service-worker.js": "/tweeter/service-worker.js",
-    "static/css/main.138362c9.chunk.css.map": "/tweeter/static/css/main.138362c9.chunk.css.map",
+    "static/css/main.f5631370.chunk.css.map": "/tweeter/static/css/main.f5631370.chunk.css.map",
     "static/js/2.b07c255e.chunk.js.LICENSE.txt": "/tweeter/static/js/2.b07c255e.chunk.js.LICENSE.txt",
     "static/media/TwitterLogo.svg": "/tweeter/static/media/TwitterLogo.a7a925c7.svg",
     "static/media/avatar.svg": "/tweeter/static/media/avatar.896129ac.svg",
@@ -24,7 +24,7 @@
   "entrypoints": [
     "static/js/runtime-main.6a247108.js",
     "static/js/2.b07c255e.chunk.js",
-    "static/css/main.138362c9.chunk.css",
+    "static/css/main.f5631370.chunk.css",
     "static/js/main.f340b749.chunk.js"
   ]
 }
