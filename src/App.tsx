@@ -12,19 +12,19 @@ function App() {
   const { idToken } = useSelector((state: RootState) => state.auth);
   let authRoutes = (
     <Switch>
-      <Route path="/login" component={Login} />
-      <Route path="/signup" exact component={Signup} />
-      <Redirect to="/signup" />
+      <Route path="/tweeter/login" component={Login} />
+      <Route path="/tweeter/signup" exact component={Signup} />
+      <Redirect to="/tweeter/signup" />
     </Switch>
   );
 
   if (idToken !== '') {
     authRoutes = (
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/home" exact component={Layout} />
-        <Redirect to="/home" />
+        <Route path="/tweeter/login" component={Login} />
+        <Route path="/tweeter/signup" component={Signup} />
+        <Route path="/tweeter" exact component={Layout} />
+        <Redirect to="/tweeter" />
       </Switch>
     );
   }
