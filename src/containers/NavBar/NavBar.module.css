@@ -30,7 +30,7 @@
     width: 100%;
     order: 99;
     height: 66px;
-    z-index: 10;
+    z-index: 20;
   }
 
   .container nav {

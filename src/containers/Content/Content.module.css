@@ -4,6 +4,7 @@
 
 .main {
   margin: 8px 0;
+  box-sizing: border-box;
 }
 
 @media (max-width: 690px) {
