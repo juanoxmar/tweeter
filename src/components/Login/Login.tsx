@@ -23,7 +23,7 @@ function Login() {
 
   let authRedirect = null;
   if (idToken !== '') {
-    authRedirect = <Redirect to="/home" />;
+    authRedirect = <Redirect to="/tweeter/home" />;
   }
 
   const { register, handleSubmit, formState } = useForm<FormInputs>({
@@ -79,7 +79,7 @@ function Login() {
           </form>
         </div>
         <div>
-          <a href="/signup">Sign up</a> for Tweeter
+          <a href="/tweeter/signup">Sign up</a> for Tweeter
         </div>
       </div>
     </div>

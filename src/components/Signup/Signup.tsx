@@ -26,7 +26,7 @@ function Login() {
 
   let authRedirect = null;
   if (idToken !== '') {
-    authRedirect = <Redirect to="/home" />;
+    authRedirect = <Redirect to="/tweeter/home" />;
   }
 
   const { register, handleSubmit, formState, errors } = useForm<FormInputs>({
@@ -119,7 +119,7 @@ function Login() {
           </form>
         </div>
         <div>
-          <a href="/login">Login</a> to Tweeter
+          <a href="/tweeter/login">Login</a> to Tweeter
         </div>
       </div>
     </div>
