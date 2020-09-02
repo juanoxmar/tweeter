@@ -19,7 +19,7 @@ type FormInputs = {
 
 function Login() {
   const dispatch = useAppDispatch();
-  const { idToken } = useSelector((state: RootState) => state.auth);
+  const { idToken, error } = useSelector((state: RootState) => state.auth);
 
   let authRedirect = null;
   if (idToken !== '') {
@@ -40,6 +40,12 @@ function Login() {
       })
     );
   };
+
+  let errorMessage = null;
+
+  if (error) {
+    errorMessage = 'Invalid email or password!';
+  }
 
   return (
     <div className={classes.container}>
@@ -69,6 +75,7 @@ function Login() {
               style={{ margin: '8px' }}
               fullWidth
             />
+            <div className={classes.errorMessage}>{errorMessage}</div>
             <button
               type="submit"
               disabled={!formState.isValid}

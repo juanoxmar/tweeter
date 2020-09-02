@@ -118,8 +118,7 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
       );
     }
   } catch (error) {
-    dispatch(authFail({ error: error }));
-    console.error(error);
+    dispatch(authFail({ error: error.response.data.error }));
   }
 };
 

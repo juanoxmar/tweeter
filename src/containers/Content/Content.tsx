@@ -17,7 +17,7 @@ function Content() {
 
   useEffect(() => {
     dispatch(tweetFeed({ idToken: idToken }));
-  }, []);
+  }, [dispatch, idToken]);
 
   let feed = null;
   if (allTweets.length > 0) {
