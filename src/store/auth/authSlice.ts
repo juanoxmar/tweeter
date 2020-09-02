@@ -89,7 +89,6 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
           }
         );
       }
-      console.log(response);
     } else {
       const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${AUTHKEY}`;
       const response = await axios.post<AuthResponse>(url, {
@@ -109,7 +108,6 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
       const findUser = users.data.documents.filter(
         (profile) => profile.fields.localId.stringValue === localId
       )[0];
-      console.log(findUser);
       dispatch(
         authSuccess({
           name: findUser.fields.name.stringValue,

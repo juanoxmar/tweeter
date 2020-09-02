@@ -9,12 +9,12 @@ type Props = {
 function IconButton(props: Props) {
   const { children, icon } = props;
   return (
-    <a href='/' className={classes.btn}>
+    <button className={classes.btn} disabled>
       <div>
-        <img src={icon} alt='Home' />
+        <img src={icon} alt="Home" />
         <span>{children}</span>
       </div>
-    </a>
+    </button>
   );
 }
 
