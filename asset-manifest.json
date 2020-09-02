@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/tweeter/static/css/main.1a81fa31.chunk.css",
-    "main.js": "/tweeter/static/js/main.343d31fa.chunk.js",
-    "main.js.map": "/tweeter/static/js/main.343d31fa.chunk.js.map",
+    "main.js": "/tweeter/static/js/main.86f5277e.chunk.js",
+    "main.js.map": "/tweeter/static/js/main.86f5277e.chunk.js.map",
     "runtime-main.js": "/tweeter/static/js/runtime-main.6a247108.js",
     "runtime-main.js.map": "/tweeter/static/js/runtime-main.6a247108.js.map",
     "static/js/2.e0d5c7d9.chunk.js": "/tweeter/static/js/2.e0d5c7d9.chunk.js",
     "static/js/2.e0d5c7d9.chunk.js.map": "/tweeter/static/js/2.e0d5c7d9.chunk.js.map",
     "index.html": "/tweeter/index.html",
-    "precache-manifest.6e6d17ba4621fa67dfe698aebc37900e.js": "/tweeter/precache-manifest.6e6d17ba4621fa67dfe698aebc37900e.js",
+    "precache-manifest.cb8383dbfe212d9de2531e1eb6049be9.js": "/tweeter/precache-manifest.cb8383dbfe212d9de2531e1eb6049be9.js",
     "service-worker.js": "/tweeter/service-worker.js",
     "static/css/main.1a81fa31.chunk.css.map": "/tweeter/static/css/main.1a81fa31.chunk.css.map",
     "static/js/2.e0d5c7d9.chunk.js.LICENSE.txt": "/tweeter/static/js/2.e0d5c7d9.chunk.js.LICENSE.txt",
@@ -25,6 +25,6 @@
     "static/js/runtime-main.6a247108.js",
     "static/js/2.e0d5c7d9.chunk.js",
     "static/css/main.1a81fa31.chunk.css",
-    "static/js/main.343d31fa.chunk.js"
+    "static/js/main.86f5277e.chunk.js"
   ]
 }
