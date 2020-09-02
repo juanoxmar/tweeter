@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/tweeter/static/css/main.1a81fa31.chunk.css",
+    "main.js": "/tweeter/static/js/main.ed796ffa.chunk.js",
+    "main.js.map": "/tweeter/static/js/main.ed796ffa.chunk.js.map",
+    "runtime-main.js": "/tweeter/static/js/runtime-main.6a247108.js",
+    "runtime-main.js.map": "/tweeter/static/js/runtime-main.6a247108.js.map",
+    "static/js/2.e0876e70.chunk.js": "/tweeter/static/js/2.e0876e70.chunk.js",
+    "static/js/2.e0876e70.chunk.js.map": "/tweeter/static/js/2.e0876e70.chunk.js.map",
+    "index.html": "/tweeter/index.html",
+    "precache-manifest.3272e648f32329b86f81f3eb027d1d80.js": "/tweeter/precache-manifest.3272e648f32329b86f81f3eb027d1d80.js",
+    "service-worker.js": "/tweeter/service-worker.js",
+    "static/css/main.1a81fa31.chunk.css.map": "/tweeter/static/css/main.1a81fa31.chunk.css.map",
+    "static/js/2.e0876e70.chunk.js.LICENSE.txt": "/tweeter/static/js/2.e0876e70.chunk.js.LICENSE.txt",
+    "static/media/TwitterLogo.svg": "/tweeter/static/media/TwitterLogo.a7a925c7.svg",
+    "static/media/avatar.svg": "/tweeter/static/media/avatar.896129ac.svg",
+    "static/media/feather.svg": "/tweeter/static/media/feather.f3101c81.svg",
+    "static/media/home.svg": "/tweeter/static/media/home.e9c4061a.svg",
+    "static/media/messages.svg": "/tweeter/static/media/messages.19fa33e6.svg",
+    "static/media/ring.svg": "/tweeter/static/media/ring.6ed7f9f0.svg",
+    "static/media/search.svg": "/tweeter/static/media/search.3061ebad.svg",
+    "static/media/user.svg": "/tweeter/static/media/user.f9a093a8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6a247108.js",
+    "static/js/2.e0876e70.chunk.js",
+    "static/css/main.1a81fa31.chunk.css",
+    "static/js/main.ed796ffa.chunk.js"
+  ]
+}
