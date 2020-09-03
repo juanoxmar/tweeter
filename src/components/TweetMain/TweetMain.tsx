@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
-import axios from 'axios';
+import axios from '../../config/axios';
 
 import classes from './TweetMain.module.css';
 import avatar from '../../assets/svg/avatar.svg';
@@ -15,7 +15,12 @@ type Inputs = {
   tweet: string;
 };
 
-function TweetMain() {
+type Props = {
+  clicked?: () => void;
+};
+
+function TweetMain(props: Props) {
+  const { clicked } = props;
   const dispatch = useAppDispatch();
 
   const { register, handleSubmit, formState, reset } = useForm<Inputs>({
@@ -28,31 +33,22 @@ function TweetMain() {
   );
 
   const onSubmit = async (data: Inputs) => {
-    const url =
-      'https://firestore.googleapis.com/v1/projects/tweeter-ab37d/databases/(default)/documents/tweets';
     try {
-      await axios.post(
-        url,
-        {
-          fields: {
-            localId: { stringValue: localId },
-            name: { stringValue: name },
-            userName: { stringValue: userName },
-            message: { stringValue: data.tweet },
-            likes: { arrayValue: { values: [] } },
-          },
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        }
-      );
+      await axios.post(`/tweets.json?auth=${idToken}`, {
+        localId: localId,
+        name: name,
+        userName: userName,
+        message: data.tweet,
+        time: Date.now(),
+      });
     } catch (error) {
       console.error(error);
     }
     dispatch(tweetFeed({ idToken: idToken }));
     reset();
+    if (clicked) {
+      clicked();
+    }
   };
 
   return (

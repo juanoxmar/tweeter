@@ -20,7 +20,7 @@ function TweetModal() {
           X
         </div>
         <div className={classes.tweet}>
-          <TweetMain />
+          <TweetMain clicked={clickHandler} />
         </div>
       </div>
     );
@@ -30,7 +30,7 @@ function TweetModal() {
     <>
       <Backdrop show={show} clicked={clickHandler} />
       {tweet}
-      <TweetButton onClick={clickHandler} />
+      <TweetButton clicked={clickHandler} />
     </>
   );
 }

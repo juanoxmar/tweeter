@@ -10,20 +10,16 @@ export type TweetFeed = {
 };
 
 export type TweetType = {
-  fields: {
-    likes: { arrayValue: {} };
-    message: { stringValue: string };
-    id: { stringValue: string };
-    name: { stringValue: string };
-    userName: { stringValue: string };
-  };
-  createTime: string;
-  updateTime: string;
+  localId: string;
+  name: string;
+  userName: string;
+  message: string;
+  likes: { [key: string]: string };
+  time: number;
+  tweetKey: string;
 };
 
-export type TweetResponse = {
-  documents: TweetType[];
-};
+export type TweetResponse = { [key: string]: TweetType };
 
 export type TweetSuccessAction = {
   tweets: TweetType[];

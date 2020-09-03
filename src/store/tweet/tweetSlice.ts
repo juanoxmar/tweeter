@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../config/axios';
 
 import { AppThunk } from '../store';
 import {
@@ -45,16 +45,21 @@ export const {
 
 export const tweetFeed = (feed: TweetFeed): AppThunk => async (dispatch) => {
   const { idToken } = feed;
-  const url =
-    'https://firestore.googleapis.com/v1/projects/tweeter-ab37d/databases/(default)/documents/tweets';
   try {
     dispatch(loadTweetsStart());
-    const response = await axios.get<TweetResponse>(url, {
-      headers: {
-        Authorization: `Bearer ${idToken}`,
-      },
-    });
-    dispatch(loadTweetsSuccess({ tweets: response.data.documents }));
+    const response = await axios.get<TweetResponse>(
+      `/tweets.json?auth=${idToken}`
+    );
+    if (response.data) {
+      const tweets = [];
+      for (const key in response.data) {
+        tweets.push({
+          ...response.data[key],
+          tweetKey: key,
+        });
+      }
+      dispatch(loadTweetsSuccess({ tweets: tweets }));
+    }
   } catch (error) {
     dispatch(loadTweetsFail(error));
   }

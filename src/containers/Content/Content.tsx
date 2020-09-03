@@ -22,15 +22,17 @@ function Content() {
   let feed = null;
   if (allTweets.length > 0) {
     feed = [...allTweets]
-      .sort((a, b) => Date.parse(b.createTime) - Date.parse(a.createTime))
-      .map((tweet, index) => {
-        const { message, name, userName } = tweet.fields;
+      .sort((a, b) => b.time - a.time)
+      .map((tweet) => {
+        const { message, name, userName, tweetKey, likes } = tweet;
         return (
           <TweetCard
-            name={name.stringValue}
-            userName={userName.stringValue}
-            message={message.stringValue}
-            key={index}
+            name={name}
+            userName={userName}
+            message={message}
+            tweetKey={tweetKey}
+            likes={likes}
+            key={tweetKey}
           />
         );
       });

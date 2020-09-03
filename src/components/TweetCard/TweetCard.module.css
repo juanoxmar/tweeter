@@ -22,6 +22,12 @@
   margin-top: 10px;
 }
 
+.icons img {
+  height: 15px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
 .handles {
   display: flex;
   flex-direction: row;

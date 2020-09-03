@@ -46,23 +46,11 @@ export type AuthType = {
   userName?: string;
 };
 
-type User = {
-  fields: {
-    name: {
-      stringValue: string;
-    };
-    email: {
-      stringValue: string;
-    };
-    userName: {
-      stringValue: string;
-    };
-    localId: {
-      stringValue: string;
-    };
-  };
+export type User = {
+  name: string;
+  email: string;
+  userName: string;
+  localId: string;
 };
 
-export type UsersResponse = {
-  documents: User[];
-};
+export type UsersResponse = { [key: string]: User };

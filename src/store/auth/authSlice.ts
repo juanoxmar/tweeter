@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../config/axios';
+import Axios from 'axios';
 
 import { AppThunk } from '../store';
 import {
@@ -10,6 +11,7 @@ import {
   AuthType,
   SignupResponse,
   UsersResponse,
+  User,
 } from './authTypes';
 import { AUTHKEY } from '../../config/config';
 
@@ -55,7 +57,7 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
     dispatch(authStart());
     if (method) {
       const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${AUTHKEY}`;
-      const response = await axios.post<SignupResponse>(url, {
+      const response = await Axios.post<SignupResponse>(url, {
         email: email,
         password: password,
         returnSecureToken: true,
@@ -70,24 +72,12 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
         })
       );
       if (response.status === 200) {
-        const userUrl =
-          'https://firestore.googleapis.com/v1/projects/tweeter-ab37d/databases/(default)/documents/users';
-        await axios.post(
-          userUrl,
-          {
-            fields: {
-              name: { stringValue: name },
-              email: { stringValue: email },
-              userName: { stringValue: userName },
-              localId: { stringValue: response.data.localId },
-            },
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${idToken}`,
-            },
-          }
-        );
+        await axios.post(`/users.json?auth=${idToken}`, {
+          name: name,
+          email: email,
+          userName: userName,
+          localId: response.data.localId,
+        });
       }
     } else {
       const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${AUTHKEY}`;
@@ -97,21 +87,20 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
         returnSecureToken: true,
       });
       const { idToken, localId } = response.data;
-      const users = await axios.get<UsersResponse>(
-        'https://firestore.googleapis.com/v1/projects/tweeter-ab37d/databases/(default)/documents/users',
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        }
+      const { data } = await axios.get<UsersResponse>(
+        `/users.json?auth=${idToken}`
       );
-      const findUser = users.data.documents.filter(
-        (profile) => profile.fields.localId.stringValue === localId
-      )[0];
+
+      let findUser: User = null!;
+      for (const key in data) {
+        if (data[key].localId === localId) {
+          findUser = data[key];
+        }
+      }
       dispatch(
         authSuccess({
-          name: findUser.fields.name.stringValue,
-          userName: findUser.fields.userName.stringValue,
+          name: findUser.name,
+          userName: findUser.userName,
           idToken: idToken,
           localId: localId,
         })
