@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "21e4010d32154ce4b8db716bad38dc6f",
+    "revision": "a3155e2efee489db6b80c6f6c71f829b",
     "url": "/tweeter/index.html"
   },
   {
-    "revision": "c892fb618fb2bf8c1552",
-    "url": "/tweeter/static/css/main.cc4576af.chunk.css"
+    "revision": "2a8768643235d4039c61",
+    "url": "/tweeter/static/css/main.0f2027f1.chunk.css"
   },
   {
-    "revision": "efe195d8c1b768c2cd4c",
-    "url": "/tweeter/static/js/2.226dedae.chunk.js"
+    "revision": "7b26f0b12e4ec8d9f466",
+    "url": "/tweeter/static/js/2.dea76813.chunk.js"
   },
   {
     "revision": "1937a0fc6634269e5f47f8181e27fdc7",
-    "url": "/tweeter/static/js/2.226dedae.chunk.js.LICENSE.txt"
+    "url": "/tweeter/static/js/2.dea76813.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c892fb618fb2bf8c1552",
-    "url": "/tweeter/static/js/main.567a961a.chunk.js"
+    "revision": "2a8768643235d4039c61",
+    "url": "/tweeter/static/js/main.b3482852.chunk.js"
   },
   {
     "revision": "76109fc8aa5b3d7a481f",
@@ -46,18 +46,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "e9c4061a8cd9bb9308d6d97773556b01",
     "url": "/tweeter/static/media/home.e9c4061a.svg"
-  },
-  {
-    "revision": "19fa33e63cc49f9d00e5295c721c992c",
-    "url": "/tweeter/static/media/messages.19fa33e6.svg"
-  },
-  {
-    "revision": "6ed7f9f01871f426e979afb4e2252bf2",
-    "url": "/tweeter/static/media/ring.6ed7f9f0.svg"
-  },
-  {
-    "revision": "3061ebade90222c243e2991a5100aa4c",
-    "url": "/tweeter/static/media/search.3061ebad.svg"
   },
   {
     "revision": "f9a093a8161e1a85d3d4dfef52138771",

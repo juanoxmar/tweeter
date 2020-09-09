@@ -1,32 +1,29 @@
 {
   "files": {
-    "main.css": "/tweeter/static/css/main.cc4576af.chunk.css",
-    "main.js": "/tweeter/static/js/main.567a961a.chunk.js",
-    "main.js.map": "/tweeter/static/js/main.567a961a.chunk.js.map",
+    "main.css": "/tweeter/static/css/main.0f2027f1.chunk.css",
+    "main.js": "/tweeter/static/js/main.b3482852.chunk.js",
+    "main.js.map": "/tweeter/static/js/main.b3482852.chunk.js.map",
     "runtime-main.js": "/tweeter/static/js/runtime-main.6a247108.js",
     "runtime-main.js.map": "/tweeter/static/js/runtime-main.6a247108.js.map",
-    "static/js/2.226dedae.chunk.js": "/tweeter/static/js/2.226dedae.chunk.js",
-    "static/js/2.226dedae.chunk.js.map": "/tweeter/static/js/2.226dedae.chunk.js.map",
+    "static/js/2.dea76813.chunk.js": "/tweeter/static/js/2.dea76813.chunk.js",
+    "static/js/2.dea76813.chunk.js.map": "/tweeter/static/js/2.dea76813.chunk.js.map",
     "index.html": "/tweeter/index.html",
-    "precache-manifest.0f011a5cd8efd6eea2fa91656c2a6307.js": "/tweeter/precache-manifest.0f011a5cd8efd6eea2fa91656c2a6307.js",
+    "precache-manifest.d56d8dd312b9eb87adc1695bd4f54b6b.js": "/tweeter/precache-manifest.d56d8dd312b9eb87adc1695bd4f54b6b.js",
     "service-worker.js": "/tweeter/service-worker.js",
-    "static/css/main.cc4576af.chunk.css.map": "/tweeter/static/css/main.cc4576af.chunk.css.map",
-    "static/js/2.226dedae.chunk.js.LICENSE.txt": "/tweeter/static/js/2.226dedae.chunk.js.LICENSE.txt",
+    "static/css/main.0f2027f1.chunk.css.map": "/tweeter/static/css/main.0f2027f1.chunk.css.map",
+    "static/js/2.dea76813.chunk.js.LICENSE.txt": "/tweeter/static/js/2.dea76813.chunk.js.LICENSE.txt",
     "static/media/TwitterLogo.svg": "/tweeter/static/media/TwitterLogo.a7a925c7.svg",
     "static/media/avatar.svg": "/tweeter/static/media/avatar.896129ac.svg",
     "static/media/feather.svg": "/tweeter/static/media/feather.f3101c81.svg",
     "static/media/heartBlack.svg": "/tweeter/static/media/heartBlack.70ebbcd1.svg",
     "static/media/heartRed.svg": "/tweeter/static/media/heartRed.a8cd76c1.svg",
     "static/media/home.svg": "/tweeter/static/media/home.e9c4061a.svg",
-    "static/media/messages.svg": "/tweeter/static/media/messages.19fa33e6.svg",
-    "static/media/ring.svg": "/tweeter/static/media/ring.6ed7f9f0.svg",
-    "static/media/search.svg": "/tweeter/static/media/search.3061ebad.svg",
     "static/media/user.svg": "/tweeter/static/media/user.f9a093a8.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.6a247108.js",
-    "static/js/2.226dedae.chunk.js",
-    "static/css/main.cc4576af.chunk.css",
-    "static/js/main.567a961a.chunk.js"
+    "static/js/2.dea76813.chunk.js",
+    "static/css/main.0f2027f1.chunk.css",
+    "static/js/main.b3482852.chunk.js"
   ]
 }
