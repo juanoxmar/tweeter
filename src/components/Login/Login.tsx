@@ -23,7 +23,7 @@ function Login() {
 
   let authRedirect = null;
   if (idToken !== '') {
-    authRedirect = <Redirect to="/tweeter/home" />;
+    authRedirect = <Redirect to="/tweeter" />;
   }
 
   const { register, handleSubmit, formState } = useForm<FormInputs>({

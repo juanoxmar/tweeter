@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './Main.module.css';
 
 type Props = {
   children: React.ReactNode;
@@ -6,7 +7,7 @@ type Props = {
 
 function main(props: Props) {
   const { children } = props;
-  return <main>{children}</main>;
+  return <main className={classes.container}>{children}</main>;
 }
 
 export default main;

@@ -69,7 +69,7 @@ function TweetMain(props: Props) {
               />
             </div>
             <div className={classes.btnRow}>
-              <div>- - -</div>
+              <div></div>
               <button
                 type="submit"
                 disabled={!formState.isValid}

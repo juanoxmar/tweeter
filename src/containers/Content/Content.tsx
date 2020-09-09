@@ -10,10 +10,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/reducer/reducer';
 import { tweetFeed } from '../../store/tweet/tweetSlice';
 
-function Content() {
+type Props = {
+  profile?: string;
+};
+
+function Content(props: Props) {
+  const { profile } = props;
   const dispatch = useAppDispatch();
   const { allTweets } = useSelector((state: RootState) => state.tweet);
-  const { idToken } = useSelector((state: RootState) => state.auth);
+  const { idToken, userName } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     dispatch(tweetFeed({ idToken: idToken }));
@@ -38,9 +43,13 @@ function Content() {
       });
   }
 
+  if (profile) {
+    feed = feed?.filter((tweet) => tweet.props.userName === userName);
+  }
+
   return (
     <main className={classes.container}>
-      <Home />
+      {profile ? null : <Home />}
       <div className={classes.main}>
         <TweetMain />
       </div>
