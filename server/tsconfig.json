@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "noEmit": true,
+    "typeRoots": ["node_modules/@types", "types"],
+    "rootDir": "api",
+    "plugins": [{ "name": "nexus/typescript-language-service" }],
+    "esModuleInterop": true
+  },
+  "include": ["api", "types.d.ts"]
+}

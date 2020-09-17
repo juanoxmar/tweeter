@@ -1,2 +1,13 @@
 # Tweeter
-A twitter clone made using React and Typescript.
+A full stack twitter clone.
+
+## Front End
+- React
+- Typescript
+
+## Back End
+- Node.js
+- GraphQL
+- Prisma
+- Nexus
+
