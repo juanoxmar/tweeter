@@ -47,6 +47,7 @@ schema.mutationType({
           }
           return {
             token: sign({ userId: User.id }, process.env.APP_SECRET!),
+            user: User,
           };
         } catch (error) {
           return error;
