@@ -1,8 +1,7 @@
 export type AuthSuccessAction = {
   name: string;
   userName: string;
-  idToken: string;
-  localId: string;
+  token: string;
 };
 
 export type AuthFailAction = {
@@ -12,30 +11,25 @@ export type AuthFailAction = {
 export type AuthState = {
   name: string;
   userName: string;
-  idToken: string;
-  localId: string;
+  token: string;
   error: Error | null;
   loading: boolean;
 };
 
-export type AuthResponse = {
-  displayName: string;
-  email: string;
-  expiresIn: string;
-  idToken: string;
-  kind: string;
-  localId: string;
-  refreshToken: string;
-  registered: boolean;
+export type LoginResponse = {
+  login: {
+    token: string;
+    user: {
+      name: string;
+      user_name: string;
+    };
+  };
 };
 
 export type SignupResponse = {
-  email: string;
-  expiresIn: string;
-  idToken: string;
-  kind: string;
-  localId: string;
-  refreshToken: string;
+  signup: {
+    token: string;
+  };
 };
 
 export type AuthType = {
@@ -50,7 +44,4 @@ export type User = {
   name: string;
   email: string;
   userName: string;
-  localId: string;
 };
-
-export type UsersResponse = { [key: string]: User };

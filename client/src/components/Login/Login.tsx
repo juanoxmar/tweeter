@@ -19,10 +19,10 @@ type FormInputs = {
 
 function Login() {
   const dispatch = useAppDispatch();
-  const { idToken, error } = useSelector((state: RootState) => state.auth);
+  const { token, error } = useSelector((state: RootState) => state.auth);
 
   let authRedirect = null;
-  if (idToken !== '') {
+  if (token !== '') {
     authRedirect = <Redirect to="/tweeter" />;
   }
 

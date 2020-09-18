@@ -1,25 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from '../../config/axios';
-import Axios from 'axios';
+import { request } from 'graphql-request';
 
 import { AppThunk } from '../store';
 import {
   AuthState,
   AuthSuccessAction,
   AuthFailAction,
-  AuthResponse,
+  LoginResponse,
   AuthType,
   SignupResponse,
-  UsersResponse,
-  User,
 } from './authTypes';
-import { AUTHKEY } from '../../config/config';
+import { LOGIN, SIGNUP } from '../../graphql/queries';
+
+const endpoint = 'http://localhost:4000/graphql';
 
 const initialState: AuthState = {
   name: '',
   userName: '',
-  idToken: '',
-  localId: '',
+  token: '',
   error: null,
   loading: false,
 };
@@ -33,11 +31,10 @@ const auth = createSlice({
       state.error = null;
     },
     authSuccess(state, action: PayloadAction<AuthSuccessAction>) {
-      const { name, userName, idToken, localId } = action.payload;
+      const { name, userName, token } = action.payload;
       state.name = name;
       state.userName = userName;
-      state.idToken = idToken;
-      state.localId = localId;
+      state.token = token;
       state.loading = false;
     },
     authFail(state, action: PayloadAction<AuthFailAction>) {
@@ -56,58 +53,37 @@ export const authenticate = (auth: AuthType): AppThunk => async (dispatch) => {
   try {
     dispatch(authStart());
     if (method) {
-      const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${AUTHKEY}`;
-      const response = await Axios.post<SignupResponse>(url, {
-        email: email,
-        password: password,
-        returnSecureToken: true,
+      const response: SignupResponse = await request(endpoint, SIGNUP, {
+        name,
+        email,
+        userName,
+        pw: password,
       });
-      const { idToken, localId } = response.data;
+      console.log(response);
+      const { token } = response.signup;
       dispatch(
         authSuccess({
           name: name!,
           userName: userName!,
-          idToken: idToken,
-          localId: localId,
+          token: token,
         })
       );
-      if (response.status === 200) {
-        await axios.post(`/users.json?auth=${idToken}`, {
-          name: name,
-          email: email,
-          userName: userName,
-          localId: response.data.localId,
-        });
-      }
     } else {
-      const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${AUTHKEY}`;
-      const response = await axios.post<AuthResponse>(url, {
-        email: email,
-        password: password,
-        returnSecureToken: true,
+      const response: LoginResponse = await request(endpoint, LOGIN, {
+        email,
+        password,
       });
-      const { idToken, localId } = response.data;
-      const { data } = await axios.get<UsersResponse>(
-        `/users.json?auth=${idToken}`
-      );
-
-      let findUser: User = null!;
-      for (const key in data) {
-        if (data[key].localId === localId) {
-          findUser = data[key];
-        }
-      }
+      const { token, user } = response.login;
       dispatch(
         authSuccess({
-          name: findUser.name,
-          userName: findUser.userName,
-          idToken: idToken,
-          localId: localId,
+          name: user.name,
+          userName: user.user_name,
+          token: token,
         })
       );
     }
   } catch (error) {
-    dispatch(authFail({ error: error.response.data.error }));
+    dispatch(authFail({ error: error.response.errors[0] }));
   }
 };
 
