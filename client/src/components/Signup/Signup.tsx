@@ -19,11 +19,7 @@ type FormInputs = {
 };
 
 function Login() {
-  const [signupMutation, { data, error }] = useSignupMutation();
-
-  if (data) {
-    token(data.signup?.token!);
-  }
+  const [signupMutation, { error }] = useSignupMutation();
 
   let authRedirect = null;
   if (token()) {
@@ -37,7 +33,7 @@ function Login() {
 
   const onSubmit = async (input: FormInputs) => {
     try {
-      await signupMutation({
+      const { data } = await signupMutation({
         variables: {
           email: input.email,
           name: input.name,
@@ -45,6 +41,9 @@ function Login() {
           userName: input.userName,
         },
       });
+      if (data) {
+        token(data.signup?.token!);
+      }
       userName(input.userName);
       name(input.name);
     } catch (error) {

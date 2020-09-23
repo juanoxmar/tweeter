@@ -75,6 +75,6 @@
 
 @media (max-width: 580px) {
   .innerContainer {
-    width: auto;
+    width: 90%;
   }
 }

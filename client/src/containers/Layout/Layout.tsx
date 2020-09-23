@@ -6,6 +6,7 @@ import Content from '../Content/Content';
 import Trend from '../Trend/Trend';
 import Profile from '../../components/Profile/Profile';
 import { Switch, Route } from 'react-router-dom';
+import { userName } from '../../apollo/cache';
 
 function Layout() {
   return (
@@ -14,7 +15,7 @@ function Layout() {
         <NavBar />
       </div>
       <Switch>
-        <Route path={`/tweeter/home/joxmar`} exact component={Profile} />
+        <Route path={`/tweeter/home/${userName()}`} exact component={Profile} />
         <Route path="/tweeter/home" component={Content} />
       </Switch>
       <div className={classes.trend}>

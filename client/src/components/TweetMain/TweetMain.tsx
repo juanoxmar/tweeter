@@ -55,7 +55,6 @@ function TweetMain(props: Props) {
   });
 
   const onSubmit = async (input: Inputs) => {
-    console.log(input);
     try {
       await tweetMutation({
         variables: {

@@ -17,17 +17,12 @@ type FormInputs = {
 };
 
 function Login() {
-  const [loginMutation, { data, error }] = useLoginMutation();
-
-  if (data) {
-    token(data.login?.token!);
-    userName(data.login?.user?.user_name!);
-    name(data.login?.user?.name!);
-  }
+  const [loginMutation, { error }] = useLoginMutation();
 
   let authRedirect = null;
+  const auth = token();
 
-  if (token()) {
+  if (auth) {
     authRedirect = <Redirect to="/tweeter" />;
   }
 
@@ -38,12 +33,17 @@ function Login() {
 
   const onSubmit = async (inputs: FormInputs) => {
     try {
-      await loginMutation({
+      const { data } = await loginMutation({
         variables: {
           email: inputs.email,
           password: inputs.password,
         },
       });
+      if (data) {
+        userName(data.login?.user?.user_name!);
+        name(data.login?.user?.name!);
+        token(data.login?.token!);
+      }
     } catch (error) {
       console.error(error.message);
     }

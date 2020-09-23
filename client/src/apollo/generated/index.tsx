@@ -17,7 +17,6 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  me?: Maybe<User>;
   trend?: Maybe<Array<Trend>>;
   user?: Maybe<User>;
   users: Array<User>;
@@ -55,6 +54,19 @@ export type QueryTweetsArgs = {
 
 export type QueryLikeArgs = {
   where: LikeWhereUniqueInput;
+};
+
+export type Trend = {
+  __typename?: 'Trend';
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  tweet_volume?: Maybe<Scalars['String']>;
+};
+
+export type UserWhereUniqueInput = {
+  id?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  user_name?: Maybe<Scalars['String']>;
 };
 
 export type User = {
@@ -104,19 +116,6 @@ export type TweetLikeArgs = {
   after?: Maybe<LikeWhereUniqueInput>;
 };
 
-
-export type Trend = {
-  __typename?: 'Trend';
-  name?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
-  tweet_volume?: Maybe<Scalars['String']>;
-};
-
-export type UserWhereUniqueInput = {
-  id?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
-  user_name?: Maybe<Scalars['String']>;
-};
 
 export type TweetWhereUniqueInput = {
   id?: Maybe<Scalars['String']>;
