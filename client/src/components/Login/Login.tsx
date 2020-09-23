@@ -3,12 +3,13 @@ import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
 import { yupResolver } from '@hookform/resolvers';
 import { Redirect, NavLink } from 'react-router-dom';
-import { makeVar, useReactiveVar } from '@apollo/client';
 
 import Logo from '../../assets/images/TwitterLogo.png';
 import classes from './Login.module.css';
 import schema from './validation';
 import { useLoginMutation } from '../../apollo/generated';
+
+import { name, token, userName } from '../../apollo/cache';
 
 type FormInputs = {
   email: string;
@@ -16,12 +17,17 @@ type FormInputs = {
 };
 
 function Login() {
-  const token = makeVar('');
-  useReactiveVar(token);
   const [loginMutation, { data, error }] = useLoginMutation();
 
+  if (data) {
+    token(data.login?.token!);
+    userName(data.login?.user?.user_name!);
+    name(data.login?.user?.name!);
+  }
+
   let authRedirect = null;
-  if (window.localStorage.getItem('token')) {
+
+  if (token()) {
     authRedirect = <Redirect to="/tweeter" />;
   }
 
@@ -31,15 +37,15 @@ function Login() {
   });
 
   const onSubmit = async (inputs: FormInputs) => {
-    await loginMutation({
-      variables: {
-        email: inputs.email,
-        password: inputs.password,
-      },
-    });
-    if (data?.login?.token) {
-      window.localStorage.setItem('token', data?.login?.token);
-      token(data?.login?.token);
+    try {
+      await loginMutation({
+        variables: {
+          email: inputs.email,
+          password: inputs.password,
+        },
+      });
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
