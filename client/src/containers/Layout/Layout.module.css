@@ -34,8 +34,23 @@
 }
 
 @media (max-width: 1002px) {
+  .border {
+    display: flex;
+    width: 1px;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed;
+    left: auto;
+    right: auto;
+    height: 100%;
+    border-right: 1px solid rgb(230, 236, 240);
+  }
   .trend {
-    display: none;
+    position: relative;
+    box-sizing: border-box;
+    width: 1px;
+    z-index: 0;
   }
 }
 
@@ -45,5 +60,11 @@
     justify-content: space-between;
     margin-top: 53px;
     margin-bottom: 73px;
+  }
+  .border {
+    display: none;
+  }
+  .trend {
+    display: none;
   }
 }

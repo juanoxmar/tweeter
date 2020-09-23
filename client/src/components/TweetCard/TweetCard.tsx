@@ -1,70 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
-import axios from '../../config/axios';
 import heartRed from '../../assets/svg/heartRed.svg';
 import heartBlack from '../../assets/svg/heartBlack.svg';
 import avatar from '../../assets/svg/avatar.svg';
 import classes from './TweetCard.module.css';
-import { RootState } from '../../store/reducer/reducer';
 
 type Props = {
+  tweetKey: string;
   message: string;
   name: string;
   userName: string;
-  tweetKey: string;
-  likes: { [key: string]: string };
+  likes: { User: { user_name: string } }[];
+};
+
+type unLikeResponse = {
+  unlike: { Like: { User: { user_name: string } }[] };
+};
+
+type likeResponse = {
+  createOneLike: { Tweet: { Like: { User: { user_name: string } }[] } };
 };
 
 function TweetCard(props: Props) {
-  const { message, name, userName, tweetKey, likes } = props;
-  const [likesArr, setLikesArr] = useState<string[]>([]);
+  const { message, name, userName, likes, tweetKey } = props;
+  const [likesArr, setLikesArr] = useState<{ User: { user_name: string } }[]>(
+    []
+  );
   const [iLike, setLike] = useState(false);
 
-  const { localId, idToken } = useSelector((state: RootState) => state.auth);
-
   useEffect(() => {
-    const likesArrCopy = [];
     if (likes) {
-      for (const key in likes) {
-        likesArrCopy.push(likes[key]);
-      }
+      const likesArrCopy = [...likes];
+      setLikesArr(likesArrCopy);
     }
-    setLikesArr(likesArrCopy);
   }, [likes]);
 
   useEffect(() => {
-    if (likesArr.includes(localId)) {
+    if (
+      likesArr.filter((like) => like.User.user_name === userName).length > 0
+    ) {
       setLike(true);
     }
-  }, [likesArr, localId]);
+  }, [likesArr, userName]);
 
-  const likeHandler = async () => {
-    if (!iLike) {
-      try {
-        await axios.patch(`/tweets/${tweetKey}/likes.json?auth=${idToken}`, {
-          [localId]: localId,
-        });
-        setLikesArr([...likesArr, localId]);
-      } catch (error) {
-        console.error(error.response);
-      }
-      setLike(true);
-    } else {
-      const newArr = [...likesArr];
-      const index = newArr.indexOf(localId);
-      newArr.splice(index, 1);
-      setLikesArr(newArr);
-      try {
-        await axios.delete(
-          `/tweets/${tweetKey}/likes/${localId}.json?auth=${idToken}`
-        );
-      } catch (error) {
-        console.error(error.response);
-      }
-      setLike(false);
-    }
-  };
+  // const likeHandler = async () => {
+  //   if (!iLike) {
+  //     try {
+  //       console.log(tweetKey);
+  //       const response: unLikeResponse = await client.request(UNLIKE, {
+  //         tweetId: tweetKey,
+  //       });
+  //       console.log('unlike', response);
+  //       setLikesArr(response.unlike.Like);
+  //     } catch (error) {
+  //       console.error(error.response);
+  //     }
+  //     setLike(true);
+  //   } else {
+  //     try {
+  //       client.setHeader('Authorization', `Bearer ${token}`);
+  //       const response: likeResponse = await client.request(LIKE, {
+  //         tweetId: tweetKey,
+  //       });
+  //       console.log('like', response);
+  //       setLikesArr(response.createOneLike.Tweet.Like);
+  //     } catch (error) {
+  //       console.error(error.response);
+  //     }
+  //     setLike(false);
+  //   }
+  // };
 
   let heart = heartBlack;
   if (iLike) {
@@ -84,7 +89,7 @@ function TweetCard(props: Props) {
           </div>
           <div>{message}</div>
           <div className={classes.icons}>
-            <img src={heart} alt="" onClick={likeHandler} />
+            <img src={heart} alt="" />
             {likesArr.length === 0 ? null : likesArr.length}
           </div>
         </div>

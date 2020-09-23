@@ -3,14 +3,12 @@ import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
 import { yupResolver } from '@hookform/resolvers';
 import { Redirect, NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { makeVar, useReactiveVar } from '@apollo/client';
 
 import Logo from '../../assets/images/TwitterLogo.png';
 import classes from './Login.module.css';
 import schema from './validation';
-import { authenticate } from '../../store/auth/authSlice';
-import { useAppDispatch } from '../../store/store';
-import { RootState } from '../../store/reducer/reducer';
+import { useLoginMutation } from '../../apollo/generated';
 
 type FormInputs = {
   email: string;
@@ -18,11 +16,12 @@ type FormInputs = {
 };
 
 function Login() {
-  const dispatch = useAppDispatch();
-  const { token, error } = useSelector((state: RootState) => state.auth);
+  const token = makeVar('');
+  useReactiveVar(token);
+  const [loginMutation, { data, error }] = useLoginMutation();
 
   let authRedirect = null;
-  if (token !== '') {
+  if (window.localStorage.getItem('token')) {
     authRedirect = <Redirect to="/tweeter" />;
   }
 
@@ -31,14 +30,17 @@ function Login() {
     mode: 'all',
   });
 
-  const onSubmit = (data: FormInputs) => {
-    dispatch(
-      authenticate({
-        email: data.email,
-        password: data.password,
-        method: false,
-      })
-    );
+  const onSubmit = async (inputs: FormInputs) => {
+    await loginMutation({
+      variables: {
+        email: inputs.email,
+        password: inputs.password,
+      },
+    });
+    if (data?.login?.token) {
+      window.localStorage.setItem('token', data?.login?.token);
+      token(data?.login?.token);
+    }
   };
 
   let errorMessage = null;

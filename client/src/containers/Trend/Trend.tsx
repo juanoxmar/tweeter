@@ -1,53 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import classes from './Trend.module.css';
-import { TOKEN } from '../../config/config';
 import TrendCard from '../../components/TrendCard/TrendCard';
-
-type twitTrend = {
-  name: string;
-  tweet_volume: number;
-  url: string;
-  query: string;
-};
+import { useTrendQuery } from '../../apollo/generated';
 
 function Trend() {
-  const [trend, setTrend] = useState<twitTrend[]>();
-
-  useEffect(() => {
-    (async function () {
-      try {
-        const response = await axios.get(
-          'https://cors-anywhere.herokuapp.com/https://api.twitter.com/1.1/trends/place.json?id=2490383',
-          {
-            headers: {
-              Authorization: TOKEN,
-            },
-          }
-        );
-        setTrend(
-          response.data[0].trends
-            .sort(
-              (a: twitTrend, b: twitTrend) => b.tweet_volume - a.tweet_volume
-            )
-            .slice(0, 8)
-        );
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, []);
+  const { data, loading, error } = useTrendQuery();
+  console.log(data, loading, error);
 
   let trending = null;
 
-  if (trend) {
-    trending = trend.map((tweet, index) => {
+  if (loading) {
+    trending = (
+      <div className={classes.spinner}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  if (error) {
+    trending = (
+      <div className={classes.spinner}>
+        <span>Oops!</span>
+        <span>{error.message}</span>
+      </div>
+    );
+  }
+
+  if (data) {
+    trending = data.trend?.map((tweet, index) => {
       return (
         <TrendCard
-          hashtag={tweet.name}
-          url={tweet.url}
-          volume={tweet.tweet_volume}
+          hashtag={tweet.name!}
+          url={tweet.url!}
+          volume={+tweet.tweet_volume!}
           key={index}
         />
       );

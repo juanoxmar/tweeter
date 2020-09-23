@@ -2,15 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
 import { yupResolver } from '@hookform/resolvers';
-import { useSelector } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 
 import Logo from '../../assets/images/TwitterLogo.png';
 import classes from './Signup.module.css';
 import schema from './validation';
-import { authenticate } from '../../store/auth/authSlice';
-import { RootState } from '../../store/reducer/reducer';
-import { useAppDispatch } from '../../store/store';
 
 type FormInputs = {
   name: string;
@@ -21,11 +17,8 @@ type FormInputs = {
 };
 
 function Login() {
-  const dispatch = useAppDispatch();
-  const { token } = useSelector((state: RootState) => state.auth);
-
   let authRedirect = null;
-  if (token !== '') {
+  if (window.localStorage.getItem('token')) {
     authRedirect = <Redirect to="/tweeter" />;
   }
 
@@ -34,17 +27,7 @@ function Login() {
     mode: 'all',
   });
 
-  const onSubmit = (data: FormInputs) => {
-    dispatch(
-      authenticate({
-        email: data.email,
-        password: data.password,
-        method: true,
-        name: data.name,
-        userName: data.userName,
-      })
-    );
-  };
+  const onSubmit = (data: FormInputs) => {};
 
   return (
     <div className={classes.container}>

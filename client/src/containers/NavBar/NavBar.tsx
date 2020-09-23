@@ -9,11 +9,8 @@ import user from '../../assets/svg/user.svg';
 import IconButton from '../../components/IconButton/IconButton';
 import NavAvatar from '../../components/NavAvatar/NavAvatar';
 import TweetModal from '../../components/TweetModal/TweetModal';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/reducer/reducer';
 
 function NavBar() {
-  const { name, userName } = useSelector((state: RootState) => state.auth);
   return (
     <div className={classes.container}>
       <nav className={classes.navBar}>
@@ -21,12 +18,12 @@ function NavBar() {
         <Link to="/tweeter/home">
           <IconButton icon={home}>Home</IconButton>
         </Link>
-        <Link to={`/tweeter/home/${userName}`}>
+        <Link to={`/tweeter/home/joxmar`}>
           <IconButton icon={user}>Profile</IconButton>
         </Link>
         <TweetModal />
       </nav>
-      <NavAvatar name={name} userName={userName} />
+      <NavAvatar name="Juan" userName="joxmar" />
     </div>
   );
 }

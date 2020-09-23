@@ -3,11 +3,21 @@
   flex-direction: column;
   align-items: center;
   width: 392px;
-  margin-top: 20px;
+  padding-top: 20px;
   box-sizing: border-box;
   position: fixed;
   left: auto;
   right: auto;
+  height: 100%;
+  border-left: 1px solid rgb(230, 236, 240);
+}
+
+.spinner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .trends {
@@ -29,5 +39,11 @@
 @media (max-width: 1092px) {
   .container {
     width: 322px;
+  }
+}
+
+@media (max-width: 1002px) {
+  .container {
+    display: none;
   }
 }

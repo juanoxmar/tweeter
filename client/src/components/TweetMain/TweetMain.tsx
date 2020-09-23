@@ -1,15 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers';
-import axios from '../../config/axios';
 
 import classes from './TweetMain.module.css';
 import avatar from '../../assets/svg/avatar.svg';
 import schema from './validation';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/reducer/reducer';
-import { useAppDispatch } from '../../store/store';
-import { tweetFeed } from '../../store/tweet/tweetSlice';
 
 type Inputs = {
   tweet: string;
@@ -21,34 +16,35 @@ type Props = {
 
 function TweetMain(props: Props) {
   const { clicked } = props;
-  const dispatch = useAppDispatch();
 
   const { register, handleSubmit, formState, reset } = useForm<Inputs>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
 
-  const { localId, idToken, name, userName } = useSelector(
-    (state: RootState) => state.auth
-  );
-
   const onSubmit = async (data: Inputs) => {
-    try {
-      await axios.post(`/tweets.json?auth=${idToken}`, {
-        localId: localId,
-        name: name,
-        userName: userName,
-        message: data.tweet,
-        time: Date.now(),
-      });
-    } catch (error) {
-      console.error(error);
-    }
-    dispatch(tweetFeed({ idToken: idToken }));
-    reset();
-    if (clicked) {
-      clicked();
-    }
+    //   try {
+    //     await client.request(TWEET, {
+    //       message: data.tweet,
+    //     });
+    //     reset();
+    //   } catch (error) {}
+    // try {
+    //   await axios.post(`/tweets.json?auth=${token}`, {
+    //     localId: localId,
+    //     name: name,
+    //     userName: userName,
+    //     message: data.tweet,
+    //     time: Date.now(),
+    //   });
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    // dispatch(tweetFeed({ token: token }));
+    // reset();
+    // if (clicked) {
+    //   clicked();
+    // }
   };
 
   return (
