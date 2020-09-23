@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const TREND = gql`
+gql`
   query Trend {
     trend {
       name
@@ -10,10 +10,11 @@ export const TREND = gql`
   }
 `;
 
-export const TWEETS = gql`
+gql`
   query tweets {
     tweets {
       id
+      created
       message
       Like {
         User {

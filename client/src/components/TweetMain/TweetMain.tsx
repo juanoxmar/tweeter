@@ -6,6 +6,7 @@ import classes from './TweetMain.module.css';
 import avatar from '../../assets/svg/avatar.svg';
 import schema from './validation';
 import { useTweetMutation } from '../../apollo/generated';
+import { gql } from '@apollo/client';
 
 type Inputs = {
   tweet: string;
@@ -18,7 +19,35 @@ type Props = {
 function TweetMain(props: Props) {
   const { clicked } = props;
 
-  const [tweetMutation] = useTweetMutation();
+  const [tweetMutation] = useTweetMutation({
+    update(cache, { data: TweetMutation }) {
+      cache.modify({
+        fields: {
+          tweets(existingTweets) {
+            const newTweetRef = cache.writeFragment({
+              data: TweetMutation?.createOneTweet,
+              fragment: gql`
+                fragment NewTweet on Tweet {
+                  id
+                  message
+                  Like {
+                    User {
+                      user_name
+                    }
+                  }
+                  user {
+                    name
+                    user_name
+                  }
+                }
+              `,
+            });
+            return [...existingTweets, newTweetRef];
+          },
+        },
+      });
+    },
+  });
 
   const { register, handleSubmit, formState, reset } = useForm<Inputs>({
     resolver: yupResolver(schema),

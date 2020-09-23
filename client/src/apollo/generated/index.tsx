@@ -300,7 +300,17 @@ export type TweetMutation = (
   { __typename?: 'Mutation' }
   & { createOneTweet: (
     { __typename?: 'Tweet' }
-    & Pick<Tweet, 'id'>
+    & Pick<Tweet, 'id' | 'message'>
+    & { Like: Array<(
+      { __typename?: 'Like' }
+      & { User: (
+        { __typename?: 'User' }
+        & Pick<User, 'user_name'>
+      ) }
+    )>, user: (
+      { __typename?: 'User' }
+      & Pick<User, 'name' | 'user_name'>
+    ) }
   ) }
 );
 
@@ -363,7 +373,7 @@ export type TweetsQuery = (
   { __typename?: 'Query' }
   & { tweets: Array<(
     { __typename?: 'Tweet' }
-    & Pick<Tweet, 'id' | 'message'>
+    & Pick<Tweet, 'id' | 'created' | 'message'>
     & { Like: Array<(
       { __typename?: 'Like' }
       & { User: (
@@ -454,6 +464,16 @@ export const TweetDocument = gql`
     mutation Tweet($message: String!) {
   createOneTweet(data: {message: $message}) {
     id
+    message
+    Like {
+      User {
+        user_name
+      }
+    }
+    user {
+      name
+      user_name
+    }
   }
 }
     `;
@@ -597,6 +617,7 @@ export const TweetsDocument = gql`
     query tweets {
   tweets {
     id
+    created
     message
     Like {
       User {

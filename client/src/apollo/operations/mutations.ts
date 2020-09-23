@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const LOGIN = gql`
+gql`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
@@ -12,7 +12,7 @@ export const LOGIN = gql`
   }
 `;
 
-export const SIGNUP = gql`
+gql`
   mutation Signup(
     $name: String!
     $email: String!
@@ -25,15 +25,25 @@ export const SIGNUP = gql`
   }
 `;
 
-export const TWEET = gql`
+gql`
   mutation Tweet($message: String!) {
     createOneTweet(data: { message: $message }) {
       id
+      message
+      Like {
+        User {
+          user_name
+        }
+      }
+      user {
+        name
+        user_name
+      }
     }
   }
 `;
 
-export const LIKE = gql`
+gql`
   mutation like($tweetId: String!) {
     createOneLike(data: { Tweet: { connect: { id: $tweetId } } }) {
       Tweet {
@@ -47,7 +57,7 @@ export const LIKE = gql`
   }
 `;
 
-export const UNLIKE = gql`
+gql`
   mutation unlike($tweetId: String!) {
     unLike(tweet: $tweetId) {
       Like {

@@ -37,19 +37,21 @@ function Content(props: Props) {
   }
 
   if (data) {
-    feed = data.tweets.map((tweet, index) => {
-      const { message, Like, user, id } = tweet;
-      return (
-        <TweetCard
-          tweetKey={id}
-          name={user.name}
-          userName={user.user_name}
-          message={message}
-          likes={Like}
-          key={index}
-        />
-      );
-    });
+    feed = [...data.tweets]
+      .sort((a, b) => Date.parse(b.created) - Date.parse(a.created))
+      .map((tweet, index) => {
+        const { message, Like, user, id } = tweet;
+        return (
+          <TweetCard
+            tweetKey={id}
+            name={user.name}
+            userName={user.user_name}
+            message={message}
+            likes={Like}
+            key={index}
+          />
+        );
+      });
   }
 
   return (
