@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers';
 import classes from './TweetMain.module.css';
 import avatar from '../../assets/svg/avatar.svg';
 import schema from './validation';
+import { useTweetMutation } from '../../apollo/generated';
 
 type Inputs = {
   tweet: string;
@@ -17,34 +18,28 @@ type Props = {
 function TweetMain(props: Props) {
   const { clicked } = props;
 
+  const [tweetMutation] = useTweetMutation();
+
   const { register, handleSubmit, formState, reset } = useForm<Inputs>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
 
-  const onSubmit = async (data: Inputs) => {
-    //   try {
-    //     await client.request(TWEET, {
-    //       message: data.tweet,
-    //     });
-    //     reset();
-    //   } catch (error) {}
-    // try {
-    //   await axios.post(`/tweets.json?auth=${token}`, {
-    //     localId: localId,
-    //     name: name,
-    //     userName: userName,
-    //     message: data.tweet,
-    //     time: Date.now(),
-    //   });
-    // } catch (error) {
-    //   console.error(error);
-    // }
-    // dispatch(tweetFeed({ token: token }));
-    // reset();
-    // if (clicked) {
-    //   clicked();
-    // }
+  const onSubmit = async (input: Inputs) => {
+    console.log(input);
+    try {
+      await tweetMutation({
+        variables: {
+          message: input.tweet,
+        },
+      });
+      reset();
+    } catch (error) {
+      console.error(error.message);
+    }
+    if (clicked) {
+      clicked();
+    }
   };
 
   return (

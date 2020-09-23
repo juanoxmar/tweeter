@@ -7,7 +7,6 @@ import { useTrendQuery } from '../../apollo/generated';
 
 function Trend() {
   const { data, loading, error } = useTrendQuery();
-  console.log(data, loading, error);
 
   let trending = null;
 
