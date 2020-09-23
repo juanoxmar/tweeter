@@ -7,6 +7,8 @@ import { Redirect, NavLink } from 'react-router-dom';
 import Logo from '../../assets/images/TwitterLogo.png';
 import classes from './Signup.module.css';
 import schema from './validation';
+import { token, userName, name } from '../../apollo/cache';
+import { useSignupMutation } from '../../apollo/generated';
 
 type FormInputs = {
   name: string;
@@ -17,8 +19,14 @@ type FormInputs = {
 };
 
 function Login() {
+  const [signupMutation, { data, error }] = useSignupMutation();
+
+  if (data) {
+    token(data.signup?.token!);
+  }
+
   let authRedirect = null;
-  if (window.localStorage.getItem('token')) {
+  if (token()) {
     authRedirect = <Redirect to="/tweeter" />;
   }
 
@@ -27,7 +35,38 @@ function Login() {
     mode: 'all',
   });
 
-  const onSubmit = (data: FormInputs) => {};
+  const onSubmit = async (input: FormInputs) => {
+    try {
+      await signupMutation({
+        variables: {
+          email: input.email,
+          name: input.name,
+          pw: input.password,
+          userName: input.userName,
+        },
+      });
+      userName(input.userName);
+      name(input.name);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  let errorMessage = null;
+
+  if (error) {
+    if (
+      error.graphQLErrors[0].extensions?.exception.meta.target[0] ===
+      'user_name'
+    ) {
+      errorMessage = 'Username is taken!';
+    }
+    if (
+      error.graphQLErrors[0].extensions?.exception.meta.target[0] === 'email'
+    ) {
+      errorMessage = 'Email is taken!';
+    }
+  }
 
   return (
     <div className={classes.container}>
@@ -92,6 +131,7 @@ function Login() {
               style={{ margin: '8px' }}
               fullWidth
             />
+            <div className={classes.errorMessage}>{errorMessage}</div>
             <button
               type="submit"
               disabled={!formState.isValid}
