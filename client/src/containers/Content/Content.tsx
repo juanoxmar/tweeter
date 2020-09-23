@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import classes from './Content.module.css';
@@ -6,51 +6,38 @@ import Home from '../../components/Home/Home';
 import TweetMain from '../../components/TweetMain/TweetMain';
 import Spacer from '../../components/Spacer/Spacer';
 import TweetCard from '../../components/TweetCard/TweetCard';
+import { useTweetsQuery } from '../../apollo/generated';
 
 type Props = {
   profile?: string;
 };
 
-type TweetResponse = {
-  tweets: TweetType[];
-};
-
-type TweetType = {
-  id: string;
-  message: string;
-  Like: { User: { user_name: string } }[];
-  user: { name: string; user_name: string };
-};
-
 function Content(props: Props) {
   const { profile } = props;
-  const [allTweets, setAllTweets] = useState<TweetType[]>([]);
 
-  // useEffect(() => {
-  //   (async function () {
-  //     try {
-  //       client.setHeader('Authorization', `Bearer ${token}`);
-  //       const response: TweetResponse = await client.request(TWEETS);
-  //       let feed = response.tweets;
-  //       if (profile) {
-  //         feed = response.tweets.filter(
-  //           (tweet) => tweet.user.user_name === userName
-  //         );
-  //       }
-  //       setAllTweets(() => feed);
-  //     } catch (error) {
-  //       console.error(error.response);
-  //     }
-  //   })();
-  // }, [token, profile, userName]);
+  const { data, loading, error } = useTweetsQuery();
 
-  let feed: JSX.Element | JSX.Element[] = (
-    <div className={classes.progress}>
-      <CircularProgress />
-    </div>
-  );
-  if (allTweets.length > 0) {
-    feed = [...allTweets].reverse().map((tweet, index) => {
+  let feed = null;
+
+  if (loading) {
+    feed = (
+      <div className={classes.progress}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  if (error) {
+    feed = (
+      <div className={classes.progress}>
+        <span>Oops!</span>
+        <span>{error.message}</span>
+      </div>
+    );
+  }
+
+  if (data) {
+    feed = data.tweets.map((tweet, index) => {
       const { message, Like, user, id } = tweet;
       return (
         <TweetCard
@@ -67,7 +54,7 @@ function Content(props: Props) {
 
   return (
     <main className={classes.container}>
-      {profile ? null : <Home />}
+      <Home header={profile ? 'Profile' : 'Home'} />
       <div className={classes.main}>
         <TweetMain />
       </div>

@@ -3,13 +3,18 @@ import React from 'react';
 import avatar from '../../assets/svg/avatar.svg';
 import classes from './Home.module.css';
 
-function Home() {
+type Props = {
+  header: string;
+};
+
+function Home(props: Props) {
+  const { header } = props;
   return (
     <div className={classes.bar}>
       <div className={classes.avatar}>
-        <img src={avatar} alt='' />
+        <img src={avatar} alt="" />
       </div>
-      <span>Home</span>
+      <span>{header}</span>
     </div>
   );
 }
