@@ -6,6 +6,7 @@ schema.objectType({
     t.model.id();
     t.model.created();
     t.model.message();
-    t.model.User();
+    t.model.Like();
+    t.model.User_Tweet_userToUser({ alias: 'user' });
   },
 });

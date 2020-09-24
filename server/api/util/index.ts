@@ -1,9 +1,9 @@
 function getUserId(token: any | null | undefined) {
   const userId = token.userId;
   if (!userId) {
-    throw new Error('Not Authorized!');
+    throw new Error('Not Authorized!!');
   }
-  return userId;
+  return token;
 }
 
 export { getUserId };

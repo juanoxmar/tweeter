@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "argon2": "^0.27.0",
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "nexus": "^0.26.1",
@@ -19,6 +20,9 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "start": "nexus dev"
+    "start": "node .nexus/build/api",
+    "dev": "nexus dev",
+    "clean": "rm -rf dist",
+    "build": "npm -s run clean && nexus build"
   }
 }

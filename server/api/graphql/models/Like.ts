@@ -1,12 +1,12 @@
 import { schema } from 'nexus';
 
 schema.objectType({
-  name: 'User',
+  name: 'Like',
   definition(t) {
     t.model.id();
-    t.model.name();
-    t.model.user_name();
-    t.model.email();
+    t.model.user();
+    t.model.tweet();
+    t.model.User();
     t.model.Tweet();
   },
 });

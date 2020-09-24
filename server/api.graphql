@@ -19,41 +19,102 @@ The `JSON` scalar type represents JSON objects as specified by [ECMA-404](http:/
 """
 scalar Json
 
+type Like {
+  id: String!
+  tweet: String!
+  Tweet: Tweet!
+  user: String!
+  User: User!
+}
+
+input LikeCreateInput {
+  id: String
+  Tweet: TweetCreateOneWithoutLikeInput!
+}
+
+input LikeCreateManyWithoutTweetInput {
+  connect: [LikeWhereUniqueInput!]
+  create: [LikeCreateWithoutTweetInput!]
+}
+
+input LikeCreateManyWithoutUserInput {
+  connect: [LikeWhereUniqueInput!]
+  create: [LikeCreateWithoutUserInput!]
+}
+
+input LikeCreateWithoutTweetInput {
+  id: String
+  User: UserCreateOneWithoutLikeInput!
+}
+
+input LikeCreateWithoutUserInput {
+  id: String
+  Tweet: TweetCreateOneWithoutLikeInput!
+}
+
+input LikeWhereUniqueInput {
+  id: String
+}
+
 type Mutation {
+  createOneLike(data: LikeCreateInput!): Like!
   createOneTweet(data: TweetCreateInput!): Tweet!
-  createOneUser(data: UserCreateInput!): User!
   login(email: String!, password: String!): AuthPayload
+  signup(email: String!, name: String!, pw: String!, user_name: String!): AuthPayload
+  unLike(tweet: String!): Tweet
 }
 
 type Query {
+  like(where: LikeWhereUniqueInput!): Like
+  trend: [Trend!]
   tweet(where: TweetWhereUniqueInput!): Tweet
   tweets(after: TweetWhereUniqueInput, before: TweetWhereUniqueInput, first: Int, last: Int): [Tweet!]!
   user(where: UserWhereUniqueInput!): User
   users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int): [User!]!
 }
 
+type Trend {
+  name: String
+  tweet_volume: String
+  url: String
+}
+
 type Tweet {
   created: DateTime
   id: String!
+  Like(after: LikeWhereUniqueInput, before: LikeWhereUniqueInput, first: Int, last: Int): [Like!]!
   message: String!
-  User: User!
+  user: User!
 }
 
 input TweetCreateInput {
   created: DateTime
   id: String
+  Like: LikeCreateManyWithoutTweetInput
   message: String!
-  User: UserCreateOneWithoutTweetInput!
 }
 
-input TweetCreateManyWithoutUserInput {
+input TweetCreateManyWithoutUser_Tweet_userToUserInput {
   connect: [TweetWhereUniqueInput!]
-  create: [TweetCreateWithoutUserInput!]
+  create: [TweetCreateWithoutUser_Tweet_userToUserInput!]
 }
 
-input TweetCreateWithoutUserInput {
+input TweetCreateOneWithoutLikeInput {
+  connect: TweetWhereUniqueInput
+  create: TweetCreateWithoutLikeInput
+}
+
+input TweetCreateWithoutLikeInput {
   created: DateTime
   id: String
+  message: String!
+  User_Tweet_userToUser: UserCreateOneWithoutTweet_Tweet_userToUserInput!
+}
+
+input TweetCreateWithoutUser_Tweet_userToUserInput {
+  created: DateTime
+  id: String
+  Like: LikeCreateManyWithoutTweetInput
   message: String!
 }
 
@@ -64,28 +125,34 @@ input TweetWhereUniqueInput {
 type User {
   email: String!
   id: String!
+  Like(after: LikeWhereUniqueInput, before: LikeWhereUniqueInput, first: Int, last: Int): [Like!]!
   name: String!
-  Tweet(after: TweetWhereUniqueInput, before: TweetWhereUniqueInput, first: Int, last: Int): [Tweet!]!
   user_name: String!
 }
 
-input UserCreateInput {
+input UserCreateOneWithoutLikeInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutLikeInput
+}
+
+input UserCreateOneWithoutTweet_Tweet_userToUserInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutTweet_Tweet_userToUserInput
+}
+
+input UserCreateWithoutLikeInput {
   email: String!
   id: String
   name: String!
   pw: String!
-  Tweet: TweetCreateManyWithoutUserInput
+  Tweet_Tweet_userToUser: TweetCreateManyWithoutUser_Tweet_userToUserInput
   user_name: String!
 }
 
-input UserCreateOneWithoutTweetInput {
-  connect: UserWhereUniqueInput
-  create: UserCreateWithoutTweetInput
-}
-
-input UserCreateWithoutTweetInput {
+input UserCreateWithoutTweet_Tweet_userToUserInput {
   email: String!
   id: String
+  Like: LikeCreateManyWithoutUserInput
   name: String!
   pw: String!
   user_name: String!

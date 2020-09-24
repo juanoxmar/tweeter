@@ -8,18 +8,28 @@ datasource db {
 }
 
 model Tweet {
-  id         String    @default(dbgenerated()) @id
-  created    DateTime? @default(now())
-  message    String
-  tweet_user String
-  User       User      @relation(fields: [tweet_user], references: [id])
+  id                    String    @default(dbgenerated()) @id
+  created               DateTime? @default(now())
+  message               String
+  user                  String
+  User_Tweet_userToUser User      @relation(fields: [user], references: [id])
+  Like                  Like[]
 }
 
 model User {
-  id        String  @default(dbgenerated()) @id
-  name      String
-  email     String  @unique
-  user_name String  @unique
-  pw        String
-  Tweet     Tweet[]
+  id                     String  @default(dbgenerated()) @id
+  name                   String
+  email                  String  @unique
+  user_name              String  @unique
+  pw                     String
+  Like                   Like[]
+  Tweet_Tweet_userToUser Tweet[]
+}
+
+model Like {
+  id    String @default(dbgenerated()) @id
+  tweet String
+  user  String
+  Tweet Tweet  @relation(fields: [tweet], references: [id])
+  User  User   @relation(fields: [user], references: [id])
 }

@@ -7,9 +7,10 @@ import TweetMain from '../../components/TweetMain/TweetMain';
 import Spacer from '../../components/Spacer/Spacer';
 import TweetCard from '../../components/TweetCard/TweetCard';
 import { useTweetsQuery } from '../../apollo/generated';
+import { userName } from '../../apollo/cache';
 
 type Props = {
-  profile?: string;
+  profile?: boolean;
 };
 
 function Content(props: Props) {
@@ -56,7 +57,7 @@ function Content(props: Props) {
         );
       });
     if (profile) {
-      feed = feed?.filter((tweet) => tweet.props.userName === profile);
+      feed = feed?.filter((tweet) => tweet.props.userName === userName());
     }
   }
 
