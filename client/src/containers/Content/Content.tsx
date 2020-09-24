@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import classes from './Content.module.css';
@@ -14,8 +14,11 @@ type Props = {
 
 function Content(props: Props) {
   const { profile } = props;
+  const { data, loading, error, refetch } = useTweetsQuery();
 
-  const { data, loading, error } = useTweetsQuery();
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   let feed = null;
 
@@ -52,11 +55,14 @@ function Content(props: Props) {
           />
         );
       });
+    if (profile) {
+      feed = feed?.filter((tweet) => tweet.props.userName === profile);
+    }
   }
 
   return (
     <main className={classes.container}>
-      <Home header={profile ? 'Profile' : 'Home'} />
+      <Home header="Home" />
       <div className={classes.main}>
         <TweetMain />
       </div>

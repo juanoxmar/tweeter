@@ -124,7 +124,6 @@ export type TweetWhereUniqueInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   unLike?: Maybe<Tweet>;
-  deleteOneLike?: Maybe<Like>;
   createOneLike: Like;
   createOneTweet: Tweet;
   signup?: Maybe<AuthPayload>;
@@ -134,11 +133,6 @@ export type Mutation = {
 
 export type MutationUnLikeArgs = {
   tweet: Scalars['String'];
-};
-
-
-export type MutationDeleteOneLikeArgs = {
-  where: LikeWhereUniqueInput;
 };
 
 
