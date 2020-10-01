@@ -12,6 +12,6 @@ RUN yarn build
 
 FROM node:alpine
 WORKDIR /app
-COPY --from=builder /app/.nexus ./
+COPY --from=builder /app/.nexus ./.nexus
 COPY --from=builder /app/package.json ./
 CMD ["yarn", "start"]
