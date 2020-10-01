@@ -22,15 +22,15 @@ after_success:
   - docker push joxmar/tweeter-client
   - docker push joxmar/tweeter-server
   - docker push joxmar/tweeter-nginx
-# deploy:
-#   edge: true
-#   provider: elasticbeanstalk
-#   region: us-west-2
-#   app: multi-docker
-#   env: MultiDocker-env
-#   bucket_name: elasticbeanstalk-us-west-2-799881107835
-#   bucket_path: MultiDocker-env
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: $AWS_SECRET_KEY
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-west-2
+  app: Tweeter
+  env: Tweeter-env
+  bucket_name: elasticbeanstalk-us-west-2-799881107835
+  bucket_path: Tweeter-env
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
