@@ -1,0 +1,17 @@
+FROM node:alpine as builder
+
+WORKDIR /app
+RUN apk add git
+
+COPY ./package.json ./
+COPY ./yarn.lock ./
+RUN yarn install
+COPY . .
+RUN yarn prisma generate
+RUN yarn build
+
+FROM node:alpine
+WORKDIR /app
+COPY --from=builder /app/.nexus ./
+COPY --from=builder /app/package.json ./
+CMD ["yarn", "start"]

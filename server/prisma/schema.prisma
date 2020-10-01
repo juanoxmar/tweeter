@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["linux-musl", "native"]
 }
 
 datasource db {
@@ -8,7 +9,7 @@ datasource db {
 }
 
 model Tweet {
-  id                    String    @default(dbgenerated()) @id
+  id                    String    @id @default(dbgenerated())
   created               DateTime? @default(now())
   message               String
   user                  String
@@ -17,7 +18,7 @@ model Tweet {
 }
 
 model User {
-  id                     String  @default(dbgenerated()) @id
+  id                     String  @id @default(dbgenerated())
   name                   String
   email                  String  @unique
   user_name              String  @unique
@@ -27,7 +28,7 @@ model User {
 }
 
 model Like {
-  id    String @default(dbgenerated()) @id
+  id    String @id @default(dbgenerated())
   tweet String
   user  String
   Tweet Tweet  @relation(fields: [tweet], references: [id])
