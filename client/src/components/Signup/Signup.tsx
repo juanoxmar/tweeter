@@ -23,7 +23,7 @@ function Login() {
 
   let authRedirect = null;
   if (token()) {
-    authRedirect = <Redirect to="/tweeter" />;
+    authRedirect = <Redirect to="/" />;
   }
 
   const { register, handleSubmit, formState, errors } = useForm<FormInputs>({
@@ -141,7 +141,7 @@ function Login() {
           </form>
         </div>
         <div>
-          <NavLink to="/tweeter/login">Login</NavLink> to Tweeter
+          <NavLink to="/login">Login</NavLink> to Tweeter
         </div>
       </div>
     </div>

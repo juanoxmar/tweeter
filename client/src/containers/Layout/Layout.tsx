@@ -15,13 +15,10 @@ function Layout() {
       </div>
       <Switch>
         <Route
-          path={`/tweeter/home/${userName()}`}
+          path={`/home/${userName()}`}
           render={() => <Content profile={true} />}
         />
-        <Route
-          path="/tweeter/home"
-          render={() => <Content profile={false} />}
-        />
+        <Route path="/home" render={() => <Content profile={false} />} />
       </Switch>
       <div className={classes.trend}>
         <div className={classes.border}></div>

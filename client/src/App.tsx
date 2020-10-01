@@ -12,20 +12,20 @@ import { useReactiveVar } from '@apollo/client';
 function App() {
   let authRoutes = (
     <Switch>
-      <Route path="/tweeter/login" exact component={Login} />
-      <Route path="/tweeter" exact component={Signup} />
-      <Redirect to="/tweeter" />
+      <Route path="/login" exact component={Login} />
+      <Route path="/" exact component={Signup} />
+      <Redirect to="/" />
     </Switch>
   );
 
   if (useReactiveVar(token)) {
     authRoutes = (
       <Switch>
-        <Route path={`/tweeter/home/${userName()}`} component={Layout} />
-        <Route path="/tweeter/login" exact component={Login} />
-        <Route path="/tweeter/signup" exact component={Signup} />
-        <Route path="/tweeter/home" exact component={Layout} />
-        <Redirect to="/tweeter/home" />
+        <Route path={`/home/${userName()}`} component={Layout} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/home" exact component={Layout} />
+        <Redirect to="/home" />
       </Switch>
     );
   }

@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  nginx:
+    restart: always
+    build: ./nginx
+    ports:
+      - '3050:80'
+    depends_on:
+      - api
+      - client
+
+  postgres:
+    build: ./postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  api:
+    build: ./server
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+    ports:
+      - '5555:5555'
+      - '4000:4000'
+
+  client:
+    build: ./client
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    stdin_open: true
+
+volumes:
+  postgres:
+    driver: local

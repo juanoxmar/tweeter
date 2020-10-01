@@ -15,10 +15,10 @@ function NavBar() {
     <div className={classes.container}>
       <nav className={classes.navBar}>
         <Logo />
-        <Link to="/tweeter/home">
+        <Link to="/home">
           <IconButton icon={home}>Home</IconButton>
         </Link>
-        <Link to={`/tweeter/home/joxmar`}>
+        <Link to={`/home/joxmar`}>
           <IconButton icon={user}>Profile</IconButton>
         </Link>
         <TweetModal />
