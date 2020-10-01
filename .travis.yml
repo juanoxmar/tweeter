@@ -15,7 +15,7 @@ after_success:
   # Build production images
   - docker build -t joxmar/tweeter-client -f ./client/Dockerfile.prod ./client
   - docker build -t joxmar/tweeter-server -f ./server/Dockerfile.prod ./server
-  - docker build -t joxmar/tweeter-nginx -f ./nginx/Dockerfile.prod ./nginx
+  - docker build -t joxmar/tweeter-nginx ./nginx
   # Log into the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Push images to docker hub
