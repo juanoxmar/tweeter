@@ -33,6 +33,4 @@ function App() {
   return <Main>{authRoutes}</Main>;
 }
 
-// hola
-
 export default App;
